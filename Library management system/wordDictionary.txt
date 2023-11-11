@@ -1,0 +1,48 @@
+//serialize
+                            try {
+                                LibraryMember mem = new LibraryMember(memberId,name);
+                                FileOutputStream fos = new FileOutputStream(new File("member.ser"),true);
+                                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                                oos.writeObject(mem);
+                                System.out.println("Object created!! ");
+                            }
+                             catch (FileNotFoundException e) {
+                                 System.out.println("file not found");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                            //========deserialize===========
+                            try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("member.ser"))) {
+                                LibraryMember deserializedMember = (LibraryMember) inputStream.readObject();
+                                System.out.println("Object has been deserialized:");
+                                System.out.println(deserializedMember);
+                            } catch (IOException | ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+
+//======================
+
+//serialize
+                            try {
+                                LibraryStaff staff = new LibraryStaff(staffId,staffName,role);
+                                FileOutputStream fos = new FileOutputStream(new File("staff.ser"),true);
+                                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                                oos.writeObject(staff);
+                                System.out.println("Object created!! ");
+                            }
+                            catch (FileNotFoundException e) {
+                                System.out.println("file not found");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                            //========deserialize===========
+                            try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("staff.ser"))) {
+                                LibraryStaff deserializedStaffMember = (LibraryStaff) inputStream.readObject();
+                                System.out.println("Object has been deserialized:");
+                                System.out.println(deserializedStaffMember);
+                            } catch (IOException | ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
